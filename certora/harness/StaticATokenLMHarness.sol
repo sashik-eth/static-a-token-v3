@@ -87,9 +87,16 @@ contract StaticATokenLMHarness is StaticATokenLM{
 
     }
 
-    function getReserveData_AToken() public view returns (address) {
+    function getRewardTokenFromReserveData() external view returns (address) {
         address cachedATokenUnderlying = _aTokenUnderlying;
-        // DataTypes.ReserveData memory reserveData = POOL.getReserveData(cachedATokenUnderlying);
         return POOL.getReserveData(cachedATokenUnderlying).aTokenAddress;
+    }
+
+    function updateUser(address user, uint256 currentRewardsIndex,address rewardToken) external {
+        _updateUser(user, currentRewardsIndex, rewardToken);
+    }
+
+    function getPendingRewards(uint256 balance, uint256 rewardsIndexOnLastInteraction, uint256 currentRewardsIndex, uint256 assetUnit) external pure returns (uint256) {
+        return _getPendingRewards(balance, rewardsIndexOnLastInteraction, currentRewardsIndex, assetUnit);
     }
 }
