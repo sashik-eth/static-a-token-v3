@@ -64,4 +64,3 @@ jobs:
         patch: ${{ fromJson(needs.list-patches.outputs.matrix) }} 
         rule: 
             - certora/conf/verify_staticatokenlm_verified.conf
-            
